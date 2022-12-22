@@ -1,0 +1,77 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{pgf,tikz,pgfplots}
+\usetikzlibrary{topaths}
+\usetikzlibrary{calc}
+\usepackage{mathpazo}
+\begin{document}
+\begin{tikzpicture}
+% count
+\node at (-1.75, 2) {Count = 7};
+% nodes
+% node block
+%\node[circle, draw=black] (r00) at (0, 0) {$r^{(0)}_0$};
+% node block
+%\node[circle, draw=black] (r10) at (2, 0) {$r^{(1)}_0$};
+%\node[circle, draw=black] (r01) at (0, -2) {$r^{(0)}_1$};
+% node block
+%\node[circle, draw=black] (r20) at (4, 0) {$r^{(2)}_0$};
+%\node[circle, draw=black] (r11) at (2, -2) {$r^{(1)}_1$};
+%\node[circle, draw=black] (r02) at (0, -4) {$r^{(0)}_2$};
+% node block
+%\node[circle, draw=black] (r30) at (6, 0) {$r^{(3)}_0$};
+%\node[circle, draw=black] (r21) at (4, -2) {$r^{(2)}_1$};
+%\node[circle, draw=black] (r12) at (2, -4) {$r^{(1)}_2$};
+%\node[circle, draw=black] (r03) at (0, -6) {$r^{(0)}_3$};
+% node block
+%\node[circle, draw=black] (r31) at (6, -2) {$r^{(3)}_1$};
+%\node[circle, draw=black] (r22) at (4, -4) {$r^{(2)}_2$};
+%\node[circle, draw=black] (r13) at (2, -6) {$r^{(1)}_3$};
+% node block
+%\node[circle, draw=black] (r32) at (6, -4) {$r^{(3)}_2$};
+%\node[circle, draw=black] (r23) at (4, -6) {$r^{(2)}_3$};
+% node block
+%\node[circle, draw=black] (r33) at (6, -6) {$r^{(3)}_3$};
+% separate line
+\draw (-2.5, 1) -- (7.5, 1);
+\draw (-2.5,-1) -- (7.5,-1);
+\draw (-2.5,-3) -- (7.5,-3);
+\draw (-2.5,-5) -- (7.5,-5);
+\draw (-2.5,-7) -- (7.5,-7);
+% GPU nodes
+\node at (-2,0) {GPU 0};
+\node at (-2,-2) {GPU 1};
+\node at (-2,-4) {GPU 2};
+\node at (-2,-6) {GPU 3};
+% edges
+% edge block
+%\draw[->] (r00) -- (r01);
+%\draw[->] (r00) -- (r10);
+% edge block
+%\draw[->] (r01) -- (r11);
+%\draw[->] (r10) -- (r11);
+%\draw[->] (r10) -- (r20);
+%\draw[->] (r01) -- (r02);
+% edge block
+%\draw[->] (r11) -- (r12);
+%\draw[->] (r11) -- (r21);
+%\draw[->] (r02) -- (r03);
+%\draw[->] (r02) -- (r12);
+%\draw[->] (r20) -- (r21);
+%\draw[->] (r20) -- (r30);
+% edge block
+%\draw[->] (r12) -- (r22);
+%\draw[->] (r12) -- (r13);
+%\draw[->] (r21) -- (r22);
+%\draw[->] (r21) -- (r31);
+%\draw[->] (r30) -- (r31);
+%\draw[->] (r03) -- (r13);
+% edge block
+%\draw[->] (r31) -- (r32);
+%\draw[->] (r13) -- (r23);
+%\draw[->] (r22) -- (r23);
+%\draw[->] (r22) -- (r32);
+% edge block
+%\draw[->] (r23) -- (r33);
+%\draw[->] (r32) -- (r33);
+\end{tikzpicture}
+\end{document}
