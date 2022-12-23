@@ -295,4 +295,101 @@
 \item Data is produced on CPU and is consumed by GPUs, i.e. one producer, multiple consumers.
 \end{itemize}
 \end{frame}
+% ======
+\begin{frame}
+\frametitle{Distributed training in Tensorflow}
+\framesubtitle{Code pattern}
+\begin{columns}[c]
+\begin{column}{.5\textwidth}
+\begin{figure}[!h]
+\centering
+\caption{Initialize a distributed strategy}
+\vspace*{-15pt}
+\includegraphics[scale=0.23]{images/code/tf-strategy.png}
+\end{figure}
+\vspace*{-15pt}
+\begin{figure}[!h]
+\centering
+\caption{Training loop}
+\vspace*{-15pt}
+\includegraphics[scale=.23]{images/code/train-loop-tf.png}
+\end{figure}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{figure}[!h]
+	\centering
+	\caption{Distribute a dataset}
+	\vspace*{-15pt}
+	\includegraphics[scale=0.23]{images/code/dist-dataset.png}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+% ======
+\section{Distributed training in PyTorch}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}
+\frametitle{Types of distributed training in PyTorch}
+\begin{itemize}
+	\item Data parallel training
+	\item Distributed data parallel training
+	\item RPC-based distributed training
+\end{itemize}
+\end{frame}
+% ======
+\begin{frame}
+\frametitle{Data parallel}
+\begin{itemize}
+	\item \texttt{torch.nn.DataParallel} offers minimal code changes to switch to distributed training.
+	\item To use \texttt{torch.nn.DataParallel}, simply wrap a model in it.
+	\item \texttt{torch.nn.DataParallel} uses multi thread for distributed training.
+\end{itemize}
+\end{frame}
+% ======
+\begin{frame}
+\frametitle{Data parallel}
+\framesubtitle{Code pattern}
+\begin{figure}[!h]
+\centering
+\caption{Distributed training with DataParallel}
+\includegraphics[scale=0.3]{images/code/torch-data-par.png}
+\end{figure}
+\end{frame}
+% ======
+\begin{frame}
+\frametitle{Distributed data parallel}
+\begin{itemize}
+	\item Distribute training using multiprocessing.
+	\item Lauch one process per GPU, each process has a rank.
+	\item Data loader runs separately on each process. Thus, each process needs to get its data shard based on its rank.
+\end{itemize}
+\end{frame}
+% ======
+\begin{frame}
+\frametitle{Distributed data parallel}
+\framesubtitle{Code pattern}
+\begin{figure}[!h]
+\centering
+\caption{Distributed training using DistributedDataParallel}
+\includegraphics[scale=.3]{images/code/torch-ddp.png}
+\end{figure}
+\end{frame}
+% ======
+\section{Reproduction in distributed training}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}
+\frametitle{Reproduction in distributed training in PyTorch}
+\begin{itemize}
+	\item PyTorch allows to save and restore random number generation state (RNG state). Thus, the training process can be perfectly reproduced given the following information:
+	\begin{itemize}
+		\item Model weights
+		\item Optimizer and scheduler state
+		\item Data loader state
+		\item Random number generator state
+		\item Hardwares
+	\end{itemize}
+	\item Tensorflow does not allow to get the RNG state, thus it is difficult to produce perfectly reproducible results.
+	\item To allow reproducible results for distributed training in PyTorch, we only need to save RNG states of all GPUs.
+\end{itemize}
+\end{frame}
 \end{document}
